@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -27,7 +28,7 @@ public class OmniDrive {
 
     public IMU imu;
 
-    public OmniDrive(BioBuzzStarterbotTeleopMecanum op) {
+    public OmniDrive(OpMode op) {
 
         telemetry = op.telemetry;
 
