@@ -24,6 +24,7 @@ package org.firstinspires.ftc.teamcode.auto;
 
 import static com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior.BRAKE;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -36,7 +37,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.OmniDrive;
 
-@TeleOp(name = "Mec BioBuzz StarterBot shoot", group = "StarterBot")
+@Autonomous(name = "Mec BioBuzz StarterBot shoot", group = "StarterBot")
 
 public class RobotAutoShootByTime extends OpMode {
     private DcMotor         leftFront   = null;
@@ -120,6 +121,8 @@ public class RobotAutoShootByTime extends OpMode {
 
     @Override
     public void start() {
+        runtime.reset();
+        driveTime.reset();
     }
 
     @Override
@@ -144,8 +147,10 @@ public class RobotAutoShootByTime extends OpMode {
             leftBack.setPower(FORWARD_SPEED);
             rightBack.setPower(FORWARD_SPEED);
 
+
             while (driveTime.seconds() < 0.35) //2-5 in from RIGHT side
             {
+
                 telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", driveTime.seconds());
                 telemetry.update();
             }
@@ -215,6 +220,7 @@ public class RobotAutoShootByTime extends OpMode {
     }
 
     void launch() {
+
 
 
         // Start launcher

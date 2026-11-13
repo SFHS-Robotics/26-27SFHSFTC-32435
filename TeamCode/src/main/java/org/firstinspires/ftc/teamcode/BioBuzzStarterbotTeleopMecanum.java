@@ -51,6 +51,8 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
     // Launcher settings
     public final int LAUNCHER_TARGET_VELOCITY = 1250;
     public final int LAUNCHER_MIN_VELOCITY = 1200;
+    public final int LAUNCHER_TRIGGERMIN_VELOCITY = 1000;
+    public final int LAUNCHER_TRIGGER_VELOCITY = 1050;
 
     // Intake power
     double intakePower;
@@ -107,6 +109,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
 
     @Override
     public void loop() {
+
 
         // --------------------------------
         // DRIVETRAIN
@@ -176,13 +179,18 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
     }
 
     void launch() {
+        boolean launcherButton = gamepad2.right_trigger > 0.2;
 
         // Start launcher
         if (gamepad2.right_bumper) {
 
             launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
 
-        } else {
+        }
+        else if(launcherButton) {
+            launcher.setVelocity(LAUNCHER_TRIGGER_VELOCITY);
+        }
+            else{
 
             launcher.setVelocity(0);
         }
@@ -194,12 +202,15 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
             windmillServo.setPower(1);
 
 
+        }
+        else if(launcherButton && launcher.getVelocity() > LAUNCHER_TRIGGERMIN_VELOCITY) {
 
-        } else {
-
+            windmillServo.setPower(1);
+        }
+        else{
             windmillServo.setPower(0);
         }
-        if (gamepad2.x ) {
+        if (gamepad2.x) {
 
             windmillServo.setPower(1);
         }
@@ -208,5 +219,12 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
             intakePower += 0.5;
 
         }
+
+
+
+
+
+
+
     }
 }
