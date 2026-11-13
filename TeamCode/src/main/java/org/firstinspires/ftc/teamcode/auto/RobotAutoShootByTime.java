@@ -141,14 +141,15 @@ public class RobotAutoShootByTime extends OpMode {
 
 
         if (runtime.seconds()>= 10){
-            driveTime.reset();
+            telemetry.addData("runtime >10, drivetime", driveTime);
+
             leftFront.setPower(FORWARD_SPEED);
             rightFront.setPower(FORWARD_SPEED);
             leftBack.setPower(FORWARD_SPEED);
             rightBack.setPower(FORWARD_SPEED);
 
 
-            while (driveTime.seconds() < 0.35) //2-5 in from RIGHT side
+            while (driveTime.seconds() < 0.5) //2-5 in from RIGHT side
             {
 
                 telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", driveTime.seconds());
