@@ -140,7 +140,7 @@ public class RobotAutoShootByTime extends OpMode {
 
 
 
-        if (runtime.seconds()>= 10){
+        while (runtime.seconds()>= 10 && runtime.seconds() <10.3){
             telemetry.addData("runtime >10, drivetime", driveTime);
 
             leftFront.setPower(FORWARD_SPEED);
@@ -149,7 +149,7 @@ public class RobotAutoShootByTime extends OpMode {
             rightBack.setPower(FORWARD_SPEED);
 
 
-            while (driveTime.seconds() < 0.5) //2-5 in from RIGHT side
+            while (runtime.seconds()>= 10 && runtime.seconds() <10.3) //2-5 in from RIGHT side
             {
 
                 telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", driveTime.seconds());
@@ -171,26 +171,11 @@ public class RobotAutoShootByTime extends OpMode {
         }
 
         // --------------------------------
-        // INTAKE
-        // --------------------------------
-
-        intakePower = gamepad1.right_trigger - gamepad1.left_trigger;
-
-        // --------------------------------
         // LAUNCHER
         // --------------------------------
 
         launch();
 
-        // --------------------------------
-        // APPLY INTAKE POWER
-        // --------------------------------
-
-        intake.setPower(intakePower);
-
-        leftIntakeServo.setPower(intakePower);
-
-        rightIntakeServo.setPower(intakePower);
 
         // --------------------------------
         // TELEMETRY
